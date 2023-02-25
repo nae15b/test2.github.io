@@ -1,0 +1,5 @@
+
+const staticComponentCallbackQueue=[];const executeAllCallbacksInQueue=(placeholderId)=>{console.log("Executing callbacks for "+placeholderId);staticComponentCallbackQueue.find(cbq=>cbq.placeholderId===placeholderId).queue.forEach(callback=>callback());}
+const onStaticComponentLoad=(placeholderId,callback)=>{const queueContainer=staticComponentCallbackQueue.find(cbq=>cbq.placeholderId===placeholderId);if(queueContainer){const newQueue=queueContainer.queue.concat([callback]);staticComponentCallbackQueue.find(cbq=>cbq.placeholderId===placeholderId).queue=newQueue;}
+else{staticComponentCallbackQueue.push({placeholderId:placeholderId,queue:[callback]});}}
+
